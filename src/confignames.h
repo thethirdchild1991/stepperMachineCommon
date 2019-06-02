@@ -6,13 +6,14 @@
 namespace CONFIGS {
 
     enum class configsNames : uint8_t{
-        speed,          //speed
-        acceleration,   //acceleration
-        dS,             //step in mm
-        SOnRotate,      //how much mm in one rotation
-        stepsOnRotate,  //how many steps in one rotation
-        N,              //driver multiplication
-        microStep       //how much mm in one microstep
+        speed,                  //speed
+        acceleration,           //acceleration
+        microStepsInMM,         //step in mm
+        mmInRotation,           //how much mm in one rotation
+        microStepsInRotation,   //how many steps in one rotation
+        N,                      //driver multiplication
+        distanceToZero,         //distance to zero point
+        steps,                  //steps to do
     };
 
 }

@@ -10,7 +10,7 @@ class CMDAbstract {
     public:
 
         virtual ~CMDAbstract() = 0;
-        virtual void execute() = 0;
+        virtual config_t execute() = 0;
 
 //        static std::unique_ptr<CMDAbstract> createCMD( CMD_t& cmd );
         static std::unique_ptr<CMDAbstract> createCMD( CMD_t& cmd, std::shared_ptr<ConfigsStorage> storage );

@@ -22,8 +22,10 @@ namespace CMDs{
             qDebug() << "Destructor of CMD_MOVE_mSTEPS";
         }
 
-        void execute() override {
+        config_t execute() override {
             qDebug() << "From CMD_MOVE_mSTEPS ";
+            mStorage->add(configsNames::steps, mCMD.second.second);
+            return  mCMD.second.second;
         }
     };
 
@@ -32,8 +34,11 @@ namespace CMDs{
         ~CMD_MOVE_mm() override {
             qDebug() << "Destructor of CMD_MOVE_mm";
         }
-        void execute() override {
+        config_t execute() override {
             qDebug() << "From CMD_MOVE_mm";
+            auto steps = mCMD.second.second * mStorage->get(configsNames::microStepsInMM);
+            mStorage->add(configsNames::steps, steps);
+            return mCMD.second.second;
         }
     };
 
@@ -42,8 +47,10 @@ namespace CMDs{
         ~CMD_SET() override {
             qDebug() << "Destructor of CMD_SET";
         }
-        void execute() override {
+        config_t execute() override {
             qDebug() << "From CMD_SET";
+            mStorage->add( mCMD.second.first, mCMD.second.second );
+            return mCMD.second.second;
         }
     };
 
@@ -52,8 +59,9 @@ namespace CMDs{
         ~CMD_GET() override {
             qDebug() << "Destructor of CMD_GET";
         }
-        void execute() override {
+        config_t execute() override {
             qDebug() << "From CMD_GET";
+            return mStorage->get( mCMD.second.first );
         }
     };
 
@@ -62,8 +70,10 @@ namespace CMDs{
         ~CMD_SET_ZERO() override {
             qDebug() << "Destructor of CMD_SET_ZERO";
         }
-        void execute() override {
+        config_t execute() override {
             qDebug() << "From CMD_SET_ZERO";
+            mStorage->add(configsNames::distanceToZero, 0);
+            return 0;
         }
     };
 
@@ -72,8 +82,9 @@ namespace CMDs{
         ~CMD_BACK_TO_ZERO() override {
             qDebug() << "Destructor of CMD_BACK_TO_ZERO";
         }
-        void execute() override {
+        config_t execute() override {
             qDebug() << "From CMD_BACK_TO_ZERO";
+            return mStorage->get(configsNames::distanceToZero);
         }
     };
 
