@@ -8,11 +8,13 @@
 
 using namespace CONFIGS;
 
+using storagePath_t = QString;
+
 class ConfigsStorage
 {    
 
 public:
-    explicit ConfigsStorage( const QString& filename ) : m_filename(filename)
+    explicit ConfigsStorage( const storagePath_t& filename ) : m_filename(filename)
     {
     }
 
@@ -46,7 +48,7 @@ public:
 
     }
 
-    void add( const configsNames name, const config_t value );
+    void add( const configsNames name, const config_t value ) {}
     config_t get( const configsNames configName ) const { return m_configs.value( configName ); }
 
     void parseJson( const QJsonObject& jsonObject ){
